@@ -90,4 +90,16 @@ public class AppTest {
         assertEquals(4, slotNumbers.get(1).intValue());
 
     }
+
+    @Test
+    public void testRegistrationNumbersofGivenCarColor(){
+        parkingLot.park("KA-01-HH-1231", "White");
+        parkingLot.park("KA-01-HH-1232", "Red");
+        parkingLot.park("KA-01-HH-1233", "Green");
+        parkingLot.park("KA-01-HH-1234", "White");
+        List<String> regNumbers = parkingLot.getRegistrationNumbersByColor("White");
+        assertEquals("KA-01-HH-1231", regNumbers.get(0));
+        assertEquals("KA-01-HH-1234", regNumbers.get(1));
+
+    }
 }

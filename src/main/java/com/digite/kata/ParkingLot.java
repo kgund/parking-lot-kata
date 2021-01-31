@@ -54,4 +54,10 @@ public class ParkingLot {
                 .map(val -> val.getKey())
                 .collect(Collectors.toList());
     }
+
+    public List<String> getRegistrationNumbersByColor(String color) {
+        return slots.entrySet().stream().filter(entry -> color.equals(entry.getValue().getColour()))
+                .map(val -> val.getValue().getRegistrationNumber())
+                .collect(Collectors.toList());
+    }
 }
