@@ -21,8 +21,15 @@ public class ParkingLot {
     }
 
     public void park(String registrationNumber, String colour) {
-        this.slots.put(1, new Car(registrationNumber, colour));
-        this.currentCapacity -= 1;
+        int key = 1;
+        while(this.slots.containsKey(key)) {
+            key += 1;
+        }
+
+        if(key <= parkingLotCapacity){
+            this.slots.put(key, new Car(registrationNumber, colour));
+            this.currentCapacity -= 1;
+        }
     }
 
     public String getColourByRegistrationNumber(String registrationNumber) {
@@ -32,10 +39,12 @@ public class ParkingLot {
     }
 
     public void leave(int i) {
-
+        slots.remove(i);
+        this.currentCapacity += 1;
     }
 
-    public int getSlotNumberByRegistrationNumber(String s) {
-        return 0;
+    public int getSlotNumberByRegistrationNumber(String registrationNumber) {
+        return slots.entrySet().stream().filter(entry -> registrationNumber.equals(entry.getValue().getRegistrationNumber()))
+                .findFirst().get().getKey();
     }
 }
