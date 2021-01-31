@@ -3,6 +3,9 @@ package com.digite.kata;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -76,4 +79,15 @@ public class AppTest {
         assertEquals(status + 1, parkingLot.getStatus());
     }
 
+    @Test
+    public void testslotNumbersOfCarsOfGivenColor(){
+        parkingLot.park("KA-01-HH-1231", "White");
+        parkingLot.park("KA-01-HH-1232", "Red");
+        parkingLot.park("KA-01-HH-1233", "Green");
+        parkingLot.park("KA-01-HH-1234", "White");
+        List<Integer> slotNumbers = parkingLot.getSlotNumbersByColor("White");
+        assertEquals(1, slotNumbers.get(0).intValue());
+        assertEquals(4, slotNumbers.get(1).intValue());
+
+    }
 }

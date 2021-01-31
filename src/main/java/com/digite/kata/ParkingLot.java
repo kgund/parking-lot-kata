@@ -1,6 +1,7 @@
 package com.digite.kata;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -46,5 +47,11 @@ public class ParkingLot {
     public int getSlotNumberByRegistrationNumber(String registrationNumber) {
         return slots.entrySet().stream().filter(entry -> registrationNumber.equals(entry.getValue().getRegistrationNumber()))
                 .findFirst().get().getKey();
+    }
+
+    public List<Integer> getSlotNumbersByColor(String color) {
+        return slots.entrySet().stream().filter(entry -> color.equals(entry.getValue().getColour()))
+                .map(val -> val.getKey())
+                .collect(Collectors.toList());
     }
 }
